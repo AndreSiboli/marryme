@@ -61,7 +61,6 @@ body{
 .questionText{
     font: bold 2em var(--IndieFlower);
     width: 302px;
-    min-width: 301px;
 }
 
 .questionText::after{
@@ -108,6 +107,6 @@ button:hover{
     }
     .questionText{
         font-size: 1.65em;
-        min-width: 1px;
+        width: 260px;
     }
 }
