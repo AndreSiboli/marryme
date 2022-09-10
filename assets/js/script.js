@@ -59,15 +59,25 @@ const changePosition = ()=>{
         times++
         return
     }
-
     times++
+    messageText.textContent = ''
+    console.log(times)
+
     if(times==10){
-        alert('Sério mesmo que não vai clicar no "Sim"?')
+        messageText.textContent = 'Sério mesmo que não vai clicar no "Sim"?'
+        document.body.style.backgroundImage = 'url("assets/image/stage2.png")'
+        document.body.style.backgroundPosition = 'bottom center'
+        openWindow()
+    }else if(times==20){
+        document.body.style.backgroundImage = 'url("assets/image/stage3.jpg")'
+        document.body.style.backgroundPosition = 'center center'
     }else if(times==30){
-        alert('O que que eu te fiz?')
+        messageText.textContent = 'O que que eu te fiz?'
+        document.body.style.backgroundImage = 'url("assets/image/stage4.jpg")'
+        openWindow()
     }else if(times == 50){
-        alert('Beleza, então é só fechar o site.😔')
-        window.close()
+        messageText.textContent = 'Beleza, então é só fechar o site.😔'
+        openWindow()
     }
     
     buttonNo.style.position = 'absolute'
@@ -100,21 +110,45 @@ window.addEventListener('resize', changingResize);
 //If accept
 
 const buttonYes = document.querySelector('#yes');
+const exitButton = document.querySelector('.buttonExit');
+const messageWindow = document.querySelector('.windowMessage-container');
+const messageText = document.querySelector('.messageText')
 
 const acceptRequest = ()=>{
-    console.log(times)
+    messageText.textContent = ''
     if(times == 1){
-        alert('Eu sabia que tudo era real <3')
+        messageText.textContent = 'Eu sabia que tudo era real <3'
+        openWindow()
     }else if(times > 1 && times <= 9){
-        alert('kkkk, acho que você quase clicou "Não" sem querer kk')
+        messageText.textContent = 'kkkk, acho que você quase clicou "Não" sem querer kk'
+        openWindow()
     }else if(times >= 10 && times <= 29){
-        alert('Okay, talvez você estivesse em duvida. Até parece que te obriguei kk')
+        messageText.textContent = 'Okay, talvez você estivesse em duvida. Até parece que te obriguei kk'
+        openWindow()
     }else if(times >= 30 && times <= 48){
-        alert('Você quer que eu tenha um ataque cardíaco? Sério mesmo?')
+        messageText.textContent = 'Você quer que eu tenha um ataque cardíaco? Sério mesmo?'
+        openWindow()
     }else if(times == 49){
-        alert('Você quase rucusou por 50 vezes, agora quem não que sou eu')
+        messageText.textContent = 'Você quase rucusou por 50 vezes, agora quem não quer sou eu'
+        openWindow()
+    }
+}
+
+const openWindow = ()=>{
+    messageWindow.style.display = 'flex'
+}
+
+const closeWindow = ()=>{
+    messageWindow.style.display = 'none'
+}
+
+const verifyWindow = ()=>{
+    console.log(times)
+    if(times >= 49){
         window.close()
     }
 }
 
 buttonYes.addEventListener('click', acceptRequest)
+exitButton.addEventListener('click', closeWindow);
+exitButton.addEventListener('click', verifyWindow);

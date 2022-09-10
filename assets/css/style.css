@@ -32,6 +32,7 @@ body{
     background-image: url('../image/4371a5030e717706b8264be1e8d6bdb1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+  
 }
 
 .main{
@@ -90,6 +91,54 @@ button:hover{
     background-color: black;
     color: white;
     cursor: url('../image/iconmonstr-medical-7.svg'), auto;
+}
+
+/*Message*/
+
+.windowMessage-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(15, 15, 15, 0.5);
+    padding: 25px;
+    z-index: 1;
+}
+
+.windowMessage{
+    max-width: 500px;
+    min-height: 250px;
+    width: 100%;
+    background-color: black;
+    position: relative;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.messageText{
+    color: white;
+    font: 1.2em var(--IndieFlower);
+}
+
+.buttonExit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font: bold 2em arial;
+    background-color: crimson;
+    border-radius: 50%;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+}
+
+.buttonExit:hover{
+    color: white;
+    background-color: black;
 }
 
 @keyframes typing{
