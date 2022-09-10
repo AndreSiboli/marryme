@@ -3,7 +3,7 @@ const settingTyping = {
     text: 'Quer namorar comigo?', 
     mainText: 'Quer casar comigo?',
     hateText: 'Por que me odeia?',
-    goodText: 'Sério mesmo? Eu te amo',
+    goodText: 'Sério? Eu te amo',
     textSpeed: 100,
     currentLetter: 0,
     isDelete: false
@@ -142,10 +142,7 @@ const acceptRequest = ()=>{
     }
 
     textWriting.textContent = ''
-    textWriting.parentElement.style.width = '350px'
-    textWriting.style.width = '350px'
     settingTyping.mainText = settingTyping.goodText
-    
     interval = setInterval(typingText, settingTyping.textSpeed)
     blockAnswer()
 }

@@ -60,14 +60,15 @@ body{
 }
 
 .questionText{
+    text-align: center;
     font: bold 2em var(--IndieFlower);
-    width: 302px;
 }
 
 .questionText::after{
-    content: '|';
+    content: '';
     font-family: Arial, Helvetica, sans-serif;
-    animation: typing .2s infinite alternate-reverse steps(60);
+     animation: typing .2s infinite alternate-reverse steps(60);
+     padding-right: 3px;
 }
 
 .buttons{
@@ -150,10 +151,10 @@ button:hover{
 
 @keyframes typing{
     from{
-        content: '';
+        border-right: 2px solid black;
     }
     to{
-        content: '|';
+        border-right: 2px solid transparent;
     }
 }
 
