@@ -93,6 +93,10 @@ button:hover{
     cursor: url('../image/iconmonstr-medical-7.svg'), auto;
 }
 
+.disabled{
+    pointer-events: none;
+}
+
 /*Message*/
 
 .windowMessage-container{
@@ -108,6 +112,9 @@ button:hover{
 }
 
 .windowMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 500px;
     min-height: 250px;
     width: 100%;

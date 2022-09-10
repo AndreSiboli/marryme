@@ -2,6 +2,8 @@ const textWriting = document.querySelector('.questionText')
 const settingTyping = {
     text: 'Quer namorar comigo?', 
     mainText: 'Quer casar comigo?',
+    hateText: 'Por que me odeia?',
+    goodText: 'Sério mesmo? Eu te amo',
     textSpeed: 100,
     currentLetter: 0,
     isDelete: false
@@ -13,10 +15,10 @@ const typingText = ()=>{
     let currentLetter = settingTyping.currentLetter
     let isDelete = settingTyping.isDelete
     let otherText = textWriting.innerHTML
-
+    console.log(mainText)
     if(currentLetter < mainText.length){
         if(otherText.indexOf('Quer casar ') != -1 || isDelete){
-            
+            console.log('error')
             settingTyping.isDelete = true
             textWriting.textContent = mainText.substring(0, otherText.length-1)
             settingTyping.textSpeed = Math.round(Math.random()*(250 - 150) + 150)
@@ -37,6 +39,7 @@ const typingText = ()=>{
         settingTyping.currentLetter++
 
     }else{
+        settingTyping.currentLetter = 0
         clearInterval(interval)
     }
 
@@ -58,7 +61,10 @@ const changePosition = ()=>{
         buttonYes.removeAttribute('hidden')
         times++
         return
+    }else if(times == 1){
+        buttonNo.style.position = 'absolute'
     }
+
     times++
     messageText.textContent = ''
     console.log(times)
@@ -72,7 +78,7 @@ const changePosition = ()=>{
         document.body.style.backgroundImage = 'url("assets/image/stage3.jpg")'
         document.body.style.backgroundPosition = 'center center'
     }else if(times==30){
-        messageText.textContent = 'O que que eu te fiz?'
+        messageText.textContent = 'Eu te fiz algo, afinal?'
         document.body.style.backgroundImage = 'url("assets/image/stage4.jpg")'
         openWindow()
     }else if(times == 50){
@@ -80,7 +86,6 @@ const changePosition = ()=>{
         openWindow()
     }
     
-    buttonNo.style.position = 'absolute'
     let [ posX, posY ]= calculatePosition()
     setPosition(posX, posY)
 };
@@ -115,12 +120,15 @@ const messageWindow = document.querySelector('.windowMessage-container');
 const messageText = document.querySelector('.messageText')
 
 const acceptRequest = ()=>{
+    clearInterval(interval)
+    settingTyping.isDelete = false
+    settingTyping.currentLetter = 0
     messageText.textContent = ''
     if(times == 1){
         messageText.textContent = 'Eu sabia que tudo era real <3'
         openWindow()
     }else if(times > 1 && times <= 9){
-        messageText.textContent = 'kkkk, acho que você quase clicou "Não" sem querer kk'
+        messageText.textContent = `kkkk acho que você quase clicou "Não" sem querer ${times} vezes kk`
         openWindow()
     }else if(times >= 10 && times <= 29){
         messageText.textContent = 'Okay, talvez você estivesse em duvida. Até parece que te obriguei kk'
@@ -132,6 +140,14 @@ const acceptRequest = ()=>{
         messageText.textContent = 'Você quase rucusou por 50 vezes, agora quem não quer sou eu'
         openWindow()
     }
+
+    textWriting.textContent = ''
+    textWriting.parentElement.style.width = '350px'
+    textWriting.style.width = '350px'
+    settingTyping.mainText = settingTyping.goodText
+    
+    interval = setInterval(typingText, settingTyping.textSpeed)
+    blockAnswer()
 }
 
 const openWindow = ()=>{
@@ -143,10 +159,24 @@ const closeWindow = ()=>{
 }
 
 const verifyWindow = ()=>{
-    console.log(times)
     if(times >= 49){
-        window.close()
+        refusedRequest()
     }
+}
+
+const blockAnswer = ()=>{
+    buttonNo.style.position = 'static'
+    buttonNo.setAttribute('disabled', '')
+    buttonYes.setAttribute('disabled', '')
+    buttonNo.className = 'disabled'
+    buttonYes.className = 'disabled'
+}
+
+const refusedRequest = ()=>{
+    blockAnswer()
+    textWriting.textContent = ''
+    settingTyping.mainText = settingTyping.hateText
+    interval = setInterval(typingText, settingTyping.textSpeed)
 }
 
 buttonYes.addEventListener('click', acceptRequest)
